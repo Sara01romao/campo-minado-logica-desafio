@@ -1,0 +1,150 @@
+body{
+  font-family: cursive;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.config{
+  border: 1px solid red;
+  max-width: 400px;
+  width: 100%;
+  padding: 12px;
+  margin: 0px auto 10px;
+}
+
+h2{
+  margin: 2px;
+  font-size:18px;
+}
+
+.radioBtns{
+  display:flex;
+  justify-content: space-between;
+}
+
+#mapaArea{
+  display: flex;
+  justify-content:center;
+}
+
+.linhaMapa{
+  display:flex;
+  gap:2px;
+}
+
+.posicaoLista{
+  display:flex;
+  flex-direction: column;
+  gap:2px;
+}
+
+.posicaoItem{
+  background: #E2D4AE;
+  transition: background-color 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div[isOpening="true"]{
+  background: #E6E6E6;
+}
+
+div[isOpening="true"]:hover{
+  background: #E6E6E6;
+
+}
+
+.posicaoItem:hover{
+  transition: background-color 0.5s ease;
+  background: #EAE2CB;
+}
+
+.valorPosicao{
+  font-size: 18px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+i{
+ font-size: 30px;
+}
+
+.posicaoItem.last-click{
+ background: #f99090;
+}
+
+.posicaoItem.last-click:hover{
+  background: #f99090;
+}
+
+.intro{
+  display:none;
+}
+
+.intro h1{
+  text-align: center;
+}
+
+.control{
+  max-width: 433px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 24px;
+}
+
+.opcoesConfig{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#configBtn,
+#reiniciarBtn {
+  background: #7066e0; 
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+#configBtn svg,
+#reiniciarBtn svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  fill: none;
+}
+
+#configBtn:hover,
+#reiniciarBtn:hover {
+  background: #4b5563;
+}
+
+#configBtn:active,
+#reiniciarBtn:active {
+  transform: scale(0.92);
+}
+
+#configBtn:focus,
+#reiniciarBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.4);
+}
