@@ -66,8 +66,6 @@ function abrirConfiguracoes(){
       const level = $('input[name="level"]:checked').val();
       const mode = $('input[name="mode"]:checked').val();
 
-      console.log(level)
-
       if (!level || !mode) {
         Swal.showValidationMessage("Selecione level e mode!");
         return false;
@@ -107,13 +105,11 @@ function iniciarJogo(level = "facil", mode = "iniciante") {
   inicialJogo.dificuldade = levelMap[level];
   inicialJogo.tamanhoMatriz = modeMap[mode];
 
-  console.log("Matriz:", inicialJogo.tamanhoMatriz);
-  console.log("Dificuldade:", inicialJogo.dificuldade);
-
   inicialJogo.mapa = CampoMinado.Mapa(
     inicialJogo.tamanhoMatriz,
     inicialJogo.dificuldade
   );
+ 
   $(".intro").css("display", "block");
   adicionaMapa();
 }

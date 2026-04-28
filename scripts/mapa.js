@@ -19,7 +19,7 @@ class CampoMinado{
     this.inicializaMapa();
     this.adicionarMinasMapa();
     this.vericarQtdMinas();
-    this.imprimir();
+    // this.imprimir();
   }
 
   calcQtdMinas(){
