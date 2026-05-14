@@ -1,0 +1,84 @@
+body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main{
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 20px;
+}
+
+.init-game{
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 60px 14px;
+  border-radius: 15px;
+}
+
+.logo{
+  display:block;
+  margin: 0 auto;
+}
+
+.btn-home{
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn-home button, .btn-home a{
+  width: 70%;
+  height: 50px;
+  margin: 0 auto;
+  border: 4px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.btn-play{
+  font-family: Arial;
+  background: #33B550;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-play:hover{
+  background: #2ca647;
+  transition: all 0.3s;
+}
+
+.btn-config{
+  background:#EBEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn-config:hover{
+  background:#d1d1d1;
+  transition: all 0.3s;
+}
+
+.btn-config i{
+  font
+}
