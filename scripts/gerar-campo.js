@@ -1,84 +1,66 @@
 function iniciar(){
-  Swal.fire({
-  title: "Campo Minado",
-  text: "Escolha uma opção",
-  iconHtml: '<i class="fa-solid fa-bomb" "></i>',
-
-  html: `
-    <div style="display:flex; flex-direction: column; gap: 10px">
-      <button id="btnJogar" class="swal2-confirm swal2-styled">Jogar</button>
-      <button id="btnConfig" class="swal2-cancel swal2-styled">Configuração</button>
-    </div>
-  `,
-
-  showConfirmButton: false,
-  showCancelButton: false,
-
-  allowOutsideClick: false,
-  allowEscapeKey: false,
-  allowEnterKey: false,
-  showCloseButton: false,
-
-  didOpen: () => {
-      $("#btnJogar").on("click", function () {
-        Swal.close();
-        iniciarJogo();
-      });
-
-      $("#btnConfig").on("click", function () {
-        Swal.close();
-        abrirConfiguracoes();
-      });
-    }
-  });
-
-}
-
-iniciar();
-
-function abrirConfiguracoes(){
- 
- Swal.fire({
-    title: "Configurações ⚙️",
-    html: `
-      <div style="text-align:left">
-        <p><strong>Nível:</strong></p>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <label><input type="radio" name="level" value="facil" checked> Fácil</label>
-          <label><input type="radio" name="level" value="medio"> Médio</label>
-          <label><input type="radio" name="level" value="dificio"> Difícil</label>
-        </div>
-        <p style="margin-top:10px"><strong>Modo:</strong></p>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <label><input type="radio" name="mode" value="iniciante" checked> Iniciante</label>
-          <label><input type="radio" name="mode" value="intermediario"> Intermediario</label>
-          <label><input type="radio" name="mode" value="especialista"> Especialista</label>
-        </div>
-    `,
-    confirmButtonText: "Jogar ▶",
+  $.get('start-modal.html', function(data){
+    Swal.fire({
+    html: data,
+    showConfirmButton: false,
+    showCancelButton: false,
 
     allowOutsideClick: false,
     allowEscapeKey: false,
     allowEnterKey: false,
     showCloseButton: false,
 
-    preConfirm: function () {
-      const level = $('input[name="level"]:checked').val();
-      const mode = $('input[name="mode"]:checked').val();
+    didOpen: () => {
+        $("#btnJogar").on("click", function () {
+          Swal.close();
+          iniciarJogo();
+        });
 
-      if (!level || !mode) {
-        Swal.showValidationMessage("Selecione level e mode!");
-        return false;
+        $("#btnConfig").on("click", function () {
+          abrirConfiguracoes("home");
+        });
       }
+    });
 
-      return { level, mode };
-    }
-  }).then(function (result) {
-    if (result.isConfirmed) {
-      iniciarJogo(result.value.level, result.value.mode);
-    }
-  });
+  })
+}
 
+iniciar();
+
+function abrirConfiguracoes(screenContext){
+
+ $.get("./config-modal.html", function(data){
+    Swal.fire({
+        title: `<h3 class="title-config-modal"><i class="fa-solid fa-gear"></i> Configuração</h3>`,
+        html:data,
+        showClass:{popup:"modal-config"},
+        confirmButtonText: "Salvar",
+        showCloseButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        
+        preConfirm: function () {
+          const level = $('input[name="level"]:checked').val();
+          const mode = $('input[name="mode"]:checked').val();
+
+          if (!level || !mode) {
+            Swal.showValidationMessage("Selecione level e mode!");
+            return false;
+          }
+
+          return { level, mode };
+        }
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          if(screenContext === "home"){
+            iniciar();
+          }else if(screenContext === "game"){
+             iniciarJogo(result.value.level, result.value.mode);
+          }
+          console.log(result)
+        }
+      });
+   })
 }
 
 const inicialJogo = {
@@ -114,12 +96,13 @@ function iniciarJogo(level = "facil", mode = "iniciante") {
   adicionaMapa();
 }
 
+
 $("#configBtn").click(function(){
-  abrirConfiguracoes();
+  abrirConfiguracoes("game");
 })
 
 $("#reiniciarBtn").click(function(){
-  iniciar();
+ iniciarJogo()
 })
 
 function adicionaMapa(){
