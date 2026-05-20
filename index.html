@@ -1,32 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/start.css">
+  <link rel="stylesheet" href="./css/config.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.js" integrity="sha512-pnPZhx5S+z5FSVwy62gcyG2Mun8h6R+PG01MidzU+NGF06/ytcm2r6+AaWMBXAnDHsdHWtsxS0dH8FBKA84FlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.css" integrity="sha512-/j+6zx45kh/MDjnlYQL0wjxn+aPaSkaoTczyOGfw64OB2CHR7Uh5v1AML7VUybUnUTscY5ck/gbGygWYcpCA7w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Campo Minado</title>
 </head>
 <body>
-   <main>
-    <div class="init-game">
-      <img src="./imgs/logo-campo.svg" class="logo" width="267" alt="Logo">
+  <main>
+    <div class="intro">
+      <header>
+        <img src="./imgs/logo-campo.svg" class="logo" width="267" alt="Logo">
+      </header>
       
-      <div class="btn-home">
-        <a class="btn-play" href="game.html">Jogar</a>
-        <button class="btn-config">
-          <i class="fa-solid fa-gear"></i>
-          Configurar
-        </button>
+      <div class="painel">
+        <div class="pontuacao">
+          <div class="item-pontuacao">
+            <i class="fa-solid fa-trophy"></i>
+            <p class="vitorias-contador">0</p>
+          </div>
+
+          <div class="item-pontuacao">
+            <i class="fa-solid fa-skull"></i>
+            <p class="vitorias-contador">0</p>
+          </div>
+        </div>
+
+        <div class="control">
+          <button id="configBtn"> 
+            <i class="fa-solid fa-gear"></i>
+          </button>
+
+          <button id="reiniciarBtn"> 
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+          </button>
+        </div>
       </div>
+      
     </div>
+    
+    <div id="mapaArea"></div>
   </main>
 
   <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- <script  src="./scripts/mapa.js"></script>
-  <script defer src="./scripts/gerar-campo.js"></script> -->
+  <script  src="./scripts/mapa.js"></script>
+  <script defer src="./scripts/gerar-campo.js"></script>
 
 </body>
 </html>
