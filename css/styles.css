@@ -1,0 +1,194 @@
+body {
+  font-family: cursive;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 0px 20px;
+}
+
+.config {
+  border: 1px solid red;
+  max-width: 400px;
+  width: 100%;
+  padding: 12px;
+  margin: 0px auto 10px;
+}
+
+h2 {
+  margin: 2px;
+  font-size: 18px;
+}
+
+.radioBtns {
+  display: flex;
+  justify-content: space-between;
+}
+
+#mapaArea {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.linhaMapa {
+  display: flex;
+  gap: 2px;
+}
+
+.posicaoLista {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.posicaoItem {
+  background: #e2d4ae;
+  transition: background-color 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div[isOpening="true"] {
+  background: #e6e6e6;
+}
+
+div[isOpening="true"]:hover {
+  background: #e6e6e6;
+}
+
+.posicaoItem:hover {
+  transition: background-color 0.5s ease;
+  background: #eae2cb;
+}
+
+.valorPosicao {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+i {
+  font-size: 30px;
+}
+
+.posicaoItem.last-click {
+  background: #f99090;
+}
+
+.posicaoItem.last-click:hover {
+  background: #f99090;
+}
+
+.intro {
+  max-width: 500px;
+  width: 100%;
+  display: none;
+}
+
+.painel{
+  display: flex;
+  border: 1px solid #eeeeee;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0px 20px;
+  margin-top: 50px;
+}
+
+.painel i{
+  font-size: 20px;
+}
+
+.pontuacao{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.item-pontuacao{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.item-pontuacao p{
+  border: 2px solid #838383;
+  padding: 0px 22px;
+  border-radius: 5px;
+}
+
+.item-pontuacao .fa-trophy{
+  color: #FFB331;
+}
+
+.item-pontuacao .fa-skull{
+  color: #595959;
+}
+
+.control {
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.opcoesConfig {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#configBtn,
+#reiniciarBtn {
+  border: none;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+#reiniciarBtn {
+  background: #7066e0;
+}
+
+#configBtn{
+  background: #D9D9D9;
+}
+
+#configBtn:hover{
+  background: #C7C7C7;
+  transition: all 0.3s;
+}
+
+#reiniciarBtn:hover {
+  background: #655cca;
+}
+
+#configBtn:active,
+#reiniciarBtn:active {
+  transform: scale(0.92);
+}
+
+#configBtn:focus,
+#reiniciarBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.4);
+}
