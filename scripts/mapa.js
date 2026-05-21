@@ -59,71 +59,34 @@ class CampoMinado{
   }
 
   vericarQtdMinas(){
-    for (let i = 0; i < this.mapa.length; i++) {
-      for (let j = 0; j < this.mapa.length; j++) {
+    for (let linha = 0; linha < this.mapa.length; linha++) {
+      for (let coluna = 0; coluna < this.mapa.length; coluna++) {
 
-        let [xLeste, yLeste] = [ i, j + 1 ];
-        let [xOeste, yOeste] = [i,  j - 1];
-        let [xNorte, yNorte] = [ i - 1, j];
-        let [xSul, ySul] = [i + 1 , j];
-        let [xNordeste, yNordeste] = [i - 1 , j + 1];
-        let [xNoroeste, yNoroeste] = [i - 1, j - 1 ];
-        let [xSudeste, ySudeste] = [i + 1 , j + 1 ];
-        let [xSudoeste, ySudoeste] = [i + 1, j - 1 ];
+        if((this.mapa[linha][coluna] !== 9)){
+
+          let leste = [ linha, coluna + 1 ];
+          let oeste = [linha,  coluna - 1];
+          let norte = [ linha - 1, coluna];
+          let sul = [linha + 1 , coluna];
+          let nordeste = [linha - 1 , coluna + 1];
+          let noroeste = [linha - 1, coluna - 1 ];
+          let sudeste = [linha + 1 , coluna + 1 ];
+          let sudoeste = [linha + 1, coluna - 1 ];
         
-        let count = 0;
-
-        if(i !== this.tamanhoMatriz - 1){
-          if (this.mapa[xSul][ySul] === 9 && this.mapa[i][j] !== 9) {
-            count++;
-
-            this.mapa[i][j] = count;
+          let posicoes = [leste, oeste, norte, sul, nordeste, noroeste, sudeste, sudoeste];
+          let count = 0;
+          
+          for(let indexPosicao = 0; indexPosicao < posicoes.length; indexPosicao++){
+            let [linPosicao, colPosicao] = posicoes[indexPosicao]
+            
+            if((linPosicao >= 0 && linPosicao <= this.tamanhoMatriz - 1) && (colPosicao >= 0 && colPosicao <=  this.tamanhoMatriz - 1)){
+            
+              if(this.mapa[linPosicao][colPosicao] === 9){
+                count++;
+                this.mapa[linha][coluna] = count;
+              }
+            }
           }
-
-          if (this.mapa[xSudeste][ySudeste] === 9 && this.mapa[i][j] !== 9) {
-            count++;
-
-            this.mapa[i][j] = count;
-          }
-
-          if ( this.mapa[xSudoeste][ySudoeste] === 9 && this.mapa[i][j] !== 9) {
-            count++;
-
-            this.mapa[i][j] = count;
-          }
-        }
-
-        if(i !== 0 ){
-
-          if ( this.mapa[xNorte][yNorte] === 9 && this.mapa[i][j] !== 9) {
-          count++;
-
-            this.mapa[i][j] = count;
-          }
-
-          if (this.mapa[xNordeste][yNordeste] === 9 && this.mapa[i][j] !== 9) {
-            count++;
-
-            this.mapa[i][j] = count;
-          }
-
-          if (this.mapa[xNoroeste][yNoroeste] === 9 && this.mapa[i][j] !== 9) {
-            count++;
-
-            this.mapa[i][j] = count;
-          }
-        }
-
-        if (j !== this.tamanhoMatriz - 1 && this.mapa[xLeste][yLeste] === 9 && this.mapa[i][j] !== 9) {
-          count++;
-
-          this.mapa[i][j] = count;
-        }
-
-        if ( j != 0 && this.mapa[xOeste][yOeste] === 9 && this.mapa[i][j] !== 9) {
-          count++;
-
-          this.mapa[i][j] = count;
         }
       }
     }
