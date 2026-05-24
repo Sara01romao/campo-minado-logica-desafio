@@ -93,8 +93,18 @@ class CampoMinado{
   }
 
   imprimir(){
-    this.mapa.forEach((element) => {
-      console.log(element);
+    var lista = [];
+
+    for(let index = 0; index < this.mapa.length; index ++){
+      lista.push(index);
+    }
+    
+    console.log("   ", lista.join(', '))
+    
+    this.mapa.forEach((element, index) => {
+      console.log( index, "|",element.join('  '), "|");
+
     });
+
   }
 }
