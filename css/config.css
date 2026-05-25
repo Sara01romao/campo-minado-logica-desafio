@@ -34,10 +34,3 @@ input[type='radio'] {
   text-align: justify;
   margin-top: 0;
 }
-
-.modal-config .swal2-confirm.swal2-styled{
-  border: 4px solid black;
-  border-radius: 8px;
-  font-size: 18px;
-  width: 200px;
-}
