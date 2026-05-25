@@ -1,5 +1,19 @@
+function gameStorage(mode="iniciante", level="facil", wins="0", lose="0"){
+  localStorage.setItem("game", JSON.stringify({mode: mode, level: level, wins:wins, lose:lose}));
+}
+
+function getGameStorage(){
+  let configStorage = localStorage.getItem("game");
+  let config = JSON.parse(configStorage);
+
+  let level = config.level;
+  let mode = config.mode;
+
+  return ([mode, level]);
+}
+
 function iniciar(){
-  $.get('start-modal.html', function(data){
+  $.get('./modais/start-modal.html', function(data){
     Swal.fire({
     html: data,
     showConfirmButton: false,
@@ -13,6 +27,10 @@ function iniciar(){
     didOpen: () => {
         $("#btnJogar").on("click", function () {
           Swal.close();
+          
+          if(!localStorage.getItem("game")){
+            gameStorage()
+          }
           iniciarJogo();
         });
 
@@ -29,7 +47,7 @@ iniciar();
 
 function abrirConfiguracoes(screenContext){
 
- $.get("./config-modal.html", function(data){
+ $.get("./modais/config-modal.html", function(data){
     Swal.fire({
         title: `<h3 class="title-config-modal"><i class="fa-solid fa-gear"></i> Configuração</h3>`,
         html:data,
@@ -51,15 +69,26 @@ function abrirConfiguracoes(screenContext){
           return { level, mode };
         }
       }).then(function (result) {
+        
         if (result.isConfirmed) {
           if(screenContext === "home"){
+            gameStorage( result.value.mode, result.value.level,)
             iniciar();
           }else if(screenContext === "game"){
-             iniciarJogo(result.value.level, result.value.mode);
+            gameStorage( result.value.mode, result.value.level,)
+            iniciarJogo();
           }
-          console.log(result)
+
         }
       });
+
+   }).then(()=>{
+      let [mode, level] = getGameStorage();
+
+      $('[name=mode]').prop('checked',false);
+      $('[name="mode"][value="' + mode + '"]').prop('checked', true);
+      $('[name=level]').prop('checked',false);
+      $('[name="level"][value="' + level + '"]').prop('checked', true);
    })
 }
 
@@ -69,7 +98,10 @@ const inicialJogo = {
   mapa: null
 };
 
-function iniciarJogo(level = "facil", mode = "iniciante") {
+function iniciarJogo() {
+  let [mode, level] = getGameStorage();
+  gameStorage(mode, level)
+
   $("#mapaArea").empty();
 
   const levelMap = {
@@ -84,18 +116,17 @@ function iniciarJogo(level = "facil", mode = "iniciante") {
     especialista: 12
   };
 
-  inicialJogo.dificuldade = levelMap[level];
   inicialJogo.tamanhoMatriz = modeMap[mode];
+  inicialJogo.dificuldade = levelMap[level];
 
   inicialJogo.mapa = CampoMinado.Mapa(
-    inicialJogo.tamanhoMatriz,
-    inicialJogo.dificuldade
+   inicialJogo.tamanhoMatriz,
+   inicialJogo.dificuldade 
   );
  
   $(".intro").css("display", "block");
   adicionaMapa();
 }
-
 
 $("#configBtn").click(function(){
   abrirConfiguracoes("game");
@@ -237,39 +268,27 @@ function ganhouPartida() {
 
 function mostrarVitoria() {
   Swal.fire({
-    title: "🎉 Você ganhou!",
-    html: `
-      <div style="text-align:center">
-        <div style="font-size:40px;">🏆</div>
-       
-      </div>
-    `,
-    confirmButtonText: "Jogar novamente 🔄",
+    title: `<h3 class="title-config-modal"><i class="fa-solid fa-trophy"></i> Você Ganhou</h3>`,
+    confirmButtonText: "Jogar",
 
     allowOutsideClick: false,
     allowEscapeKey: false,
 
   }).then(() => {
-    iniciarJogo(inicialJogo.level, inicialJogo.mode);
+    iniciarJogo();
   });
 }
 
 function mostrarDerrota() {
-  Swal.fire({
-    title: "💥 Você perdeu!",
-    html: `
-      <div style="text-align:center">
-        <div style="font-size:40px; margin-bottom:10px;">💣</div>
-        
-      </div>
-    `,
-    
-    confirmButtonText: "Jogar novamente 🔄",
 
+  Swal.fire({
+    title: `<h3 class="title-config-modal"><i class="fa-solid fa-skull"></i> Perdeu</h3>`,
+    confirmButtonText: "Jogar ",
 
   }).then((result) => {
     if (result.isConfirmed) {
-      iniciar();
+      iniciarJogo();
     }
   });
+  
 }
